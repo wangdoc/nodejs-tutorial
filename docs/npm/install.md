@@ -216,7 +216,7 @@ $ npm uninstall lodash --save-dev
 
 ## package-lock.json
 
-从 npm 5.0 版本开始，npm 模块默认会锁版本，生成`package-lock.json`文件。下面是一个例子。
+从 npm 5.0 版本开始，npm 模块默认会锁版本。在`npm install`命令安装依赖时，会自动生成`package-lock.json`文件，如果该文件已存在，则会更新该文件。下面是`package-lock.json`的一个例子。
 
 ```javascript
 {
@@ -233,10 +233,30 @@ $ npm uninstall lodash --save-dev
       "version": "3.2.3",
       "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-3.2.3.tgz",
       "integrity": "sha1-ZawFBLOVQXHYpklGsq48u4pfVPY="
+    },
+    "duplexify": {
+      "version": "3.5.0",
+      "resolved": "https://registry.npmjs.org/duplexify/-/duplexify-3.5.0.tgz",
+      "integrity": "sha1-GqdzAC4VeEV+nZ1KULDMquvL1gQ=",
+      "dependencies": {
+        "end-of-stream": {
+          "version": "1.0.0",
+          "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.0.0.tgz",
+          "integrity": "sha1-1FlucCc0qT5A6a+GQxnqvZn/Lw4="
+        }
+      }
     }
   }
 }
 ```
 
-这个文件不仅指定了每个模块的精确版本，而且还指定了`node_modules`目录的结构（即哪些模块要安装在目录的顶层）。
+这个文件不仅指定了每个模块的精确版本，而且还指定了`node_modules`目录的结构（即哪些模块要安装在目录的顶层）。也就是说，哪怕你使用不同版本的 npm，只要有这个文件，最后得到的总是同样的`node_modules`目录。可以理解成，这个文件是`node_modules`目录的一个快照。
+
+上面的例子中可以看到，每个目录不仅有精确版本（`version`字段），还有下载地址（`resolved`字段）、哈希值（`integrity`字段）和依赖模块（`dependencies`字段）。
+
+`package-lock.json`文件的`lockfileVersion`字段目前固定为1，以前的`npm-shrinkwrap.json`文件对应的`lockfileVersion`为0。这表明，前者实际上是后者的升级版。之所以叫一个新名字，是因为想表明这是一种全新的锁版本设计。
+
+`package-lock.json`与`npm-shrinkwrap.json`有一些区别。首先，npm 在任何情况下，都不会将`package-lock.json`加入发布的代码之中。然后，在一个有`package-lock.json`的目录之中，执行`npm shrinkwrap`命令时，npm 会自动将`package-lock.json`改名为`npm-shrinkwrap.json`。
+
+如果同一个目录之中，同时存在`package-lock.json`与`npm-shrinkwrap.json`两个文件。这时，npm 会忽略`package-lock.json`，只使用`npm-shrinkwrap.json`。
 

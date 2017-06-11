@@ -214,3 +214,29 @@ $ npm uninstall lodash --save
 $ npm uninstall lodash --save-dev
 ```
 
+## package-lock.json
+
+从 npm 5.0 版本开始，npm 模块默认会锁版本，生成`package-lock.json`文件。下面是一个例子。
+
+```javascript
+{
+  "name": "react-example",
+  "version": "1.0.0",
+  "lockfileVersion": 1,
+  "dependencies": {
+    "has-flag": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-1.0.0.tgz",
+      "integrity": "sha1-nZ55MWXOAXoA8AQYxD+UKnsdEfo="
+    },
+    "supports-color": {
+      "version": "3.2.3",
+      "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-3.2.3.tgz",
+      "integrity": "sha1-ZawFBLOVQXHYpklGsq48u4pfVPY="
+    }
+  }
+}
+```
+
+这个文件不仅指定了每个模块的精确版本，而且还指定了`node_modules`目录的结构（即哪些模块要安装在目录的顶层）。
+

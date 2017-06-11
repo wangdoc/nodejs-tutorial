@@ -98,3 +98,30 @@ $ yarn upgrade react@next
 $ yarn generate-lock-entry
 ```
 
+## yarn.lock 文件
+
+`yarn.lock`是一个锁文件，用来记录当前项目的依赖模块的精确版本。只要项目的根目录有这个文件，下次安装依赖的时候，总是会安装一模一样的`node_modules`目录，这个特点称为决定性（determinism）。
+
+如果当前项目没有这个文件，那么第一次运行`yarn install`或者`yarn add [模块名]`命令的时候，就会生成这个文件。以后，再运行`yarn add`命令，会更新这个文件。
+
+举例来说，`yarn add supports-color`命令会产生下面的`yarn.lock`文件。
+
+```javascript
+has-flag@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-1.0.0.tgz#9d9e793165ce017a00f00418c43f942a7b1d11fa"
+
+supports-color@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
+  dependencies:
+    has-flag "^1.0.0"
+```
+
+上面代码中，模块之间使用空行分隔。每个模块会指明当前安装的精确版本（`version`字段）和下载地址（`resovled`字段），以及依赖的模块（`dependencies`字段）。
+
+注意，从`yarn.lock`文件看不出来，哪个模块会安装在`node_modules`目录的顶层，必须结合`package.json`才能看出来，具体的算法由 Yarn 决定。这也意味着，不同版本的 Yarn 处理同样的`yarn.lock`文件，可能会得到不一样的`node_modules`目录，但是每个模块的版本肯定都是相同的。只有相同版本的 Yarn，才能保证一定会得到相同的`node_modules`目录。
+
+## 参考链接
+
+- [Yarn determinism](https://yarnpkg.com/blog/2017/05/31/determinism/), by Sebastian McKenzie

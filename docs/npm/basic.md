@@ -75,7 +75,7 @@ $ npm config set prefix $dir
 上面的命令将指定的`$dir`目录，设为模块的全局安装目录。如果当前有这个目录的写权限，那么运行`npm install`的时候，就不再需要`sudo`命令授权了。
 
 ```bash
-$ npm config set save-prefix ~
+$ npm config set save-prefix '~'
 ```
 
 上面的命令使得`npm install --save`和`npm install --save-dev`安装新模块时，允许的版本范围从克拉符号（`^`）改成波浪号（`~`），即从允许小版本升级，变成只允许补丁包的升级。

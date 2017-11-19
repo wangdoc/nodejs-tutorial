@@ -361,6 +361,36 @@ $ npm shrinkwrap
 
 下次运行`npm install`命令时，`npm`发现当前目录下有`npm-shrinkwrap.json`文件，就会只安装里面提到的模块，且版本也会保持一致。
 
+## 命令行参数
+
+### --proxy
+
+`--proxy`参数允许对`npm`命令设置代理。
+
+```bash
+$ npm --proxy http://127.0.0.1:8100 install
+# or
+$ npm config set proxy http://127.0.0.1:8100
+$ npm install
+```
+
+上面的命令将通过本机的8100端口代理`npm`的通信。
+
+如果设置了环境变量`HTTP-PROXY`或者`http-proxy`和`HTTPS-PROXY`或者`https-proxy`，那么代理设置将以这个环境变量为准。
+
+## --registry
+
+`--registry`参数设置`npm`与之通信的远程主机，默认是`https://registry.npmjs.org/`。
+
+```bash
+$ npm install --registry=https://registry.npm.taobao.org
+# or
+$ npm config set registry "https://registry.npm.taobao.org"
+$ npm install
+```
+
+上面的命令将远程主机设为`npm`的淘宝镜像。
+
 ## 参考链接
 
 - James Halliday, [task automation with npm run](http://substack.net/task_automation_with_npm_run): npm run命令（package.json文件的script属性）的用法

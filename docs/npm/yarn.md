@@ -125,3 +125,5 @@ supports-color@^3.2.3:
 ## 参考链接
 
 - [Yarn determinism](https://yarnpkg.com/blog/2017/05/31/determinism/), by Sebastian McKenzie
+- [Running Yarn offline](https://yarnpkg.com/blog/2016/11/24/offline-mirror/), by Konstantin Raev
+- [Yarn CLI](https://yarnpkg.com/zh-Hans/docs/cli/)

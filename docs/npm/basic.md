@@ -264,6 +264,20 @@ $ npm publish --tag beta
 $ npm init --scope=<yourscope>
 ```
 
+`Scopes`相当于`npm`模块的命名空间，`scoped package`的包名格式为：
+
+```bash
+@scope/project-name
+```
+
+包名以`@`开头，介于`@`和`/`之间的为`scope`。
+
+`Scoped Package`默认为私有模块，付费用户才能发布，不过发布时可以指定为公开模块，就不需要付费。
+
+```bash
+$ npm publish --access=public
+```
+
 如果你的模块是用ES6写的，那么发布的时候，最好转成ES5。首先，需要安装Babel。
 
 ```javascript

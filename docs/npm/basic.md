@@ -264,7 +264,7 @@ $ npm publish --tag beta
 $ npm init --scope=<yourscope>
 ```
 
-`Scopes`相当于`npm`模块的命名空间，`scoped package`的包名格式为：
+`Scopes`相当于`npm`模块的命名空间，`scoped package`的包名格式为：
 
 ```bash
 @scope/project-name

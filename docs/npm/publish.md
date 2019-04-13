@@ -93,6 +93,55 @@ $ npm dist-tag add <pkg>@<version> [<tag>]
 $ npm dist-tag rm <pkg> <tag>
 ```
 
+## .gitignore，.npmignore
+
+如果当前项目的根目录下有`.gitignore`文件，该文件里面的路径不会打包进入 npm 模块。
+
+如果有`.npmignore`文件，那么 npm 将忽略`.gitignore`文件，不将`.npmignore`文件里面的路径打包进入 npm 模块。如果有些文件不希望进入 npm 模块（比如测试用例），但是希望进入 Git 仓库，那么可以使用`.npmignore`。
+
+```bash
+# .gitignore
+node_modules
+
+# .npmignore
+node_modules
+tests
+```
+
+此外，`package.json`的`files`字段，也可以用来排除进入 npm 模块的文件。
+
+```javascript
+{
+  "files": [
+    "index.js"
+  ]
+}
+```
+
+npm 会最优先排除`files`字段里面的文件。另外，无论如何设置，`package.json`文件都会进入 npm 模块。
+
+## npm pack 命令
+
+`npm pack`命令用来打包当前项目，打包后的文件会在当前目录下生成，文件名为`<name>-<version>.tgz`。
+
+```bash
+$ npm pack
+```
+
+如果多次运行该命令，每次生成的包将覆盖前一次的包。
+
+`npm pack`可以接受路径作为参数，打包该路径下的模块。如果没有提供任何参数，将打包当前目录。
+
+```bash
+$ npm pack foo/bar
+```
+
+`--dry-run`参数会输出打包的内容，而不生成打包文件。
+
+```bash
+$ npm pack --dry-run
+```
+
 ## 参考链接
 
 - [One simple trick for JavaScript package maintainers](https://blog.greenkeeper.io/one-simple-trick-for-javascript-package-maintainers-to-avoid-breaking-their-user-s-software-and-to-6edf06dc5617), by Stephan Bönnemann

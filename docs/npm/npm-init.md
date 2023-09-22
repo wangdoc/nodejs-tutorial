@@ -40,3 +40,15 @@ $ npm exec create-foo
 $ npm init react-app ./my-react-app
 ```
 
+这种用法时，往往使用`npm init`命令的别名`npm create`。
+
+```bash
+$ npm create xyz
+
+// 等同于
+$ npm init xyz
+
+// 等同于
+$ npx create-xyz
+```
+

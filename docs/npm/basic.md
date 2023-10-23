@@ -295,7 +295,7 @@ $ npm install --save-dev babel-cli@6 babel-preset-es2015@6
 
 运行上面的脚本，会将`source`目录里面的ES6源码文件，转为`distribution`目录里面的ES5源码文件。然后，在项目根目录下面创建两个文件`.npmignore`和`.gitignore`，分别写入以下内容。
 
-```javascrip
+```javascript
 // .npmignore
 source
 

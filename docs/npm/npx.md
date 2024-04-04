@@ -4,7 +4,7 @@ npm 从5.2版开始，增加了 npx 命令，它有很多用处。
 
 ![](https://www.wangbase.com/blogimg/asset/201902/bg2019020901.jpg)
 
-Node 自带 npm 模块，所以可以直接使用 npx 命令。万一不能用，就要手动安装一下。
+Node 自带 npx 模块，所以可以直接使用 npx 命令。万一不能用，就要手动安装一下。
 
 ```bash
 $ npm install -g npx
@@ -49,7 +49,7 @@ $ npx ls
 $ npx create-react-app my-react-app
 ```
 
-上面代码运行时，npx 将`create-react-app`下载到一个临时目录，使用以后再删除。所以，以后再次执行上面的命令，会重新下载`create-react-app`。
+上面代码运行时，npx 将`create-react-app`下载到一个临时目录，然后自动执行`package.json`文件的`bin`字段指定的命令，执行以后再删除整个模块。所以，以后再次执行上面的命令，会重新下载`create-react-app`。
 
 下载全局模块时，npx 允许指定版本。
 
@@ -64,6 +64,8 @@ $ npx uglify-js@3.1.0 main.js -o ./dist/main.js
 ```bash
 $ npx http-server
 ```
+
+npx 也可以执行`package.json`文件的`scripts`字段的命令，比如`npx foo dev`会执行`foo`模块的`scripts`字段的`dev`命令。
 
 ## `--no-install` 参数和`--ignore-existing` 参数
 
